@@ -1,0 +1,768 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>ThiccGears — Thicc. Gears.</title>
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=Inter:wght@400;600;700;900&display=swap');
+
+    *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+    :root {
+      --black: #0a0a0a;
+      --yellow: #FFD600;
+      --orange: #FF6B00;
+      --cream: #FFF8EC;
+      --gray: #1a1a1a;
+      --mid: #333;
+    }
+
+    html { scroll-behavior: smooth; }
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background: var(--black);
+      color: var(--cream);
+      overflow-x: hidden;
+    }
+
+    /* ─── NAV ─── */
+    nav {
+      position: sticky;
+      top: 0;
+      z-index: 100;
+      background: var(--black);
+      border-bottom: 4px solid var(--yellow);
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      padding: 0 2rem;
+      height: 64px;
+    }
+    .nav-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      letter-spacing: 2px;
+      color: var(--yellow);
+    }
+    .nav-logo span { color: var(--orange); }
+    nav ul { list-style: none; display: flex; gap: 2rem; }
+    nav ul a {
+      text-decoration: none;
+      color: var(--cream);
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      transition: color 0.2s;
+    }
+    nav ul a:hover { color: var(--yellow); }
+
+    /* ─── HERO ─── */
+    .hero {
+      min-height: 92vh;
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      justify-content: center;
+      text-align: center;
+      padding: 4rem 2rem;
+      background: radial-gradient(ellipse at center, #1f1a00 0%, var(--black) 70%);
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-gear-bg {
+      position: absolute;
+      font-size: 40vw;
+      opacity: 0.04;
+      user-select: none;
+      pointer-events: none;
+      line-height: 1;
+      animation: slowspin 60s linear infinite;
+    }
+    @keyframes slowspin {
+      from { transform: rotate(0deg); }
+      to   { transform: rotate(360deg); }
+    }
+
+    .hero-eyebrow {
+      font-size: 0.9rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero h1 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(5rem, 18vw, 14rem);
+      line-height: 0.9;
+      color: var(--yellow);
+      text-shadow: 8px 8px 0 var(--orange), 16px 16px 0 #7a3200;
+      position: relative;
+    }
+
+    .hero h1 .thin-line {
+      display: block;
+      font-size: clamp(1.5rem, 4vw, 3.5rem);
+      color: var(--cream);
+      text-shadow: none;
+      letter-spacing: 6px;
+      margin-top: 0.5rem;
+    }
+
+    .hero-sub {
+      margin-top: 2rem;
+      font-size: clamp(1rem, 2.5vw, 1.4rem);
+      max-width: 640px;
+      line-height: 1.6;
+      color: #ccc;
+    }
+    .hero-sub strong { color: var(--yellow); }
+
+    .hero-cta {
+      margin-top: 2.5rem;
+      display: flex;
+      gap: 1rem;
+      flex-wrap: wrap;
+      justify-content: center;
+    }
+
+    .btn {
+      display: inline-block;
+      padding: 1rem 2.5rem;
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      border-radius: 4px;
+      cursor: pointer;
+      text-decoration: none;
+      transition: transform 0.15s, box-shadow 0.15s;
+    }
+    .btn:hover { transform: translateY(-3px); box-shadow: 0 8px 24px rgba(255,214,0,0.3); }
+    .btn-primary { background: var(--yellow); color: var(--black); }
+    .btn-secondary { background: transparent; color: var(--yellow); border: 3px solid var(--yellow); }
+
+    .badge {
+      display: inline-block;
+      background: var(--orange);
+      color: white;
+      font-size: 0.7rem;
+      font-weight: 900;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.25rem 0.75rem;
+      border-radius: 99px;
+      margin-bottom: 1rem;
+      animation: pulse 2s ease-in-out infinite;
+    }
+    @keyframes pulse {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.06); }
+    }
+
+    /* ─── SECTION COMMONS ─── */
+    section { padding: 6rem 2rem; }
+    .container { max-width: 1100px; margin: 0 auto; }
+    .section-label {
+      font-size: 0.8rem;
+      letter-spacing: 4px;
+      text-transform: uppercase;
+      color: var(--orange);
+      font-weight: 700;
+      margin-bottom: 1rem;
+    }
+    .section-title {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 6vw, 5rem);
+      line-height: 1;
+      margin-bottom: 1.5rem;
+      color: var(--yellow);
+    }
+    .section-body {
+      font-size: 1.1rem;
+      line-height: 1.7;
+      color: #bbb;
+      max-width: 680px;
+    }
+
+    /* ─── WHY THICK ─── */
+    .why { background: var(--gray); }
+    .why-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .why-card {
+      background: var(--black);
+      border: 2px solid #333;
+      border-radius: 8px;
+      padding: 2rem;
+      transition: border-color 0.2s, transform 0.2s;
+    }
+    .why-card:hover { border-color: var(--yellow); transform: translateY(-4px); }
+    .why-icon { font-size: 2.5rem; margin-bottom: 1rem; }
+    .why-card h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.6rem;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+      letter-spacing: 1px;
+    }
+    .why-card p { color: #aaa; line-height: 1.6; font-size: 0.95rem; }
+
+    /* ─── COMPARISON BAR CHART ─── */
+    .comparison { background: var(--black); }
+    .chart-wrapper { margin-top: 3rem; }
+    .chart-row {
+      display: flex;
+      align-items: center;
+      gap: 1.5rem;
+      margin-bottom: 1.5rem;
+    }
+    .chart-label {
+      width: 160px;
+      flex-shrink: 0;
+      font-weight: 700;
+      font-size: 0.9rem;
+      color: var(--cream);
+    }
+    .chart-bar-bg {
+      flex: 1;
+      background: #222;
+      border-radius: 4px;
+      height: 36px;
+      overflow: hidden;
+    }
+    .chart-bar {
+      height: 100%;
+      border-radius: 4px;
+      display: flex;
+      align-items: center;
+      padding-left: 1rem;
+      font-weight: 900;
+      font-size: 0.85rem;
+      color: var(--black);
+    }
+    .bar-us    { background: var(--yellow); }
+    .bar-them  { background: #555; color: #aaa; }
+
+    /* ─── PRODUCTS ─── */
+    .products { background: var(--gray); }
+    .products-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .product-card {
+      background: var(--black);
+      border: 3px solid #333;
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s, transform 0.2s;
+      position: relative;
+    }
+    .product-card:hover { border-color: var(--yellow); transform: translateY(-6px); }
+    .product-card.featured { border-color: var(--yellow); }
+    .featured-tag {
+      position: absolute;
+      top: 1rem; right: 1rem;
+      background: var(--yellow);
+      color: var(--black);
+      font-weight: 900;
+      font-size: 0.7rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      padding: 0.3rem 0.8rem;
+      border-radius: 99px;
+    }
+    .product-visual {
+      height: 180px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 6rem;
+      background: #111;
+    }
+    .product-body { padding: 1.5rem; }
+    .product-body h3 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2rem;
+      color: var(--yellow);
+      letter-spacing: 1px;
+    }
+    .product-thickness {
+      display: inline-block;
+      background: var(--orange);
+      color: white;
+      font-size: 0.75rem;
+      font-weight: 900;
+      letter-spacing: 1px;
+      padding: 0.2rem 0.6rem;
+      border-radius: 4px;
+      margin: 0.5rem 0;
+      text-transform: uppercase;
+    }
+    .product-body p { color: #999; font-size: 0.9rem; line-height: 1.6; margin: 0.75rem 0; }
+    .product-specs {
+      border-top: 1px solid #222;
+      margin-top: 1rem;
+      padding-top: 1rem;
+    }
+    .spec-row {
+      display: flex;
+      justify-content: space-between;
+      font-size: 0.85rem;
+      padding: 0.25rem 0;
+      color: #888;
+    }
+    .spec-row span:last-child { color: var(--cream); font-weight: 600; }
+    .product-price {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--yellow);
+      margin-top: 1rem;
+    }
+    .product-price sub { font-size: 1rem; color: #888; }
+    .product-cta {
+      display: block;
+      width: 100%;
+      padding: 0.9rem;
+      margin-top: 1rem;
+      background: var(--yellow);
+      color: var(--black);
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      letter-spacing: 2px;
+      border: none;
+      border-radius: 6px;
+      cursor: pointer;
+      transition: background 0.2s, transform 0.15s;
+      text-align: center;
+    }
+    .product-cta:hover { background: var(--orange); color: white; transform: scale(1.02); }
+
+    /* ─── TESTIMONIALS ─── */
+    .testimonials { background: var(--black); }
+    .testi-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 2rem;
+      margin-top: 3rem;
+    }
+    .testi-card {
+      background: var(--gray);
+      border-left: 4px solid var(--yellow);
+      padding: 1.5rem;
+      border-radius: 0 8px 8px 0;
+    }
+    .testi-quote {
+      font-size: 1.05rem;
+      line-height: 1.7;
+      color: var(--cream);
+      font-style: italic;
+      margin-bottom: 1rem;
+    }
+    .testi-author { font-weight: 700; color: var(--yellow); font-size: 0.9rem; }
+    .testi-team { color: #888; font-size: 0.8rem; }
+
+    /* ─── STATS BAND ─── */
+    .stats {
+      background: var(--yellow);
+      color: var(--black);
+      padding: 3rem 2rem;
+    }
+    .stats-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(180px, 1fr));
+      gap: 2rem;
+      text-align: center;
+      max-width: 1100px;
+      margin: 0 auto;
+    }
+    .stat-number {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 4rem;
+      line-height: 1;
+      color: var(--black);
+    }
+    .stat-label {
+      font-weight: 700;
+      font-size: 0.85rem;
+      letter-spacing: 2px;
+      text-transform: uppercase;
+      color: #5a3d00;
+      margin-top: 0.25rem;
+    }
+
+    /* ─── FAQ ─── */
+    .faq { background: var(--gray); }
+    .faq-list { margin-top: 3rem; display: flex; flex-direction: column; gap: 1rem; }
+    .faq-item {
+      background: var(--black);
+      border: 2px solid #333;
+      border-radius: 8px;
+      padding: 1.5rem;
+      transition: border-color 0.2s;
+    }
+    .faq-item:hover { border-color: var(--yellow); }
+    .faq-q {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 1.3rem;
+      color: var(--yellow);
+      letter-spacing: 0.5px;
+    }
+    .faq-a {
+      margin-top: 0.75rem;
+      color: #aaa;
+      line-height: 1.7;
+      font-size: 0.95rem;
+    }
+
+    /* ─── CTA BANNER ─── */
+    .cta-banner {
+      background: var(--orange);
+      color: white;
+      text-align: center;
+      padding: 5rem 2rem;
+    }
+    .cta-banner h2 {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: clamp(2.5rem, 7vw, 6rem);
+      line-height: 1;
+      margin-bottom: 1rem;
+    }
+    .cta-banner p {
+      font-size: 1.1rem;
+      opacity: 0.85;
+      max-width: 540px;
+      margin: 0 auto 2rem;
+      line-height: 1.6;
+    }
+    .cta-banner .btn-primary { background: white; color: var(--orange); }
+    .cta-banner .btn-primary:hover { box-shadow: 0 8px 24px rgba(0,0,0,0.3); }
+
+    /* ─── FOOTER ─── */
+    footer {
+      background: var(--black);
+      border-top: 4px solid var(--yellow);
+      padding: 3rem 2rem;
+      text-align: center;
+    }
+    .footer-logo {
+      font-family: 'Bebas Neue', sans-serif;
+      font-size: 2.5rem;
+      color: var(--yellow);
+      margin-bottom: 0.5rem;
+    }
+    .footer-tagline { color: #666; font-size: 0.85rem; margin-bottom: 2rem; }
+    footer nav { border: none; position: static; height: auto; padding: 0; background: none; justify-content: center; }
+    footer nav ul { gap: 2rem; flex-wrap: wrap; justify-content: center; }
+    footer nav ul a { color: #666; font-size: 0.8rem; }
+    footer nav ul a:hover { color: var(--yellow); }
+    .footer-copy { margin-top: 2rem; color: #444; font-size: 0.75rem; }
+  </style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav>
+  <div class="nav-logo">THICC<span>GEARS</span></div>
+  <ul>
+    <li><a href="#why">Why Thicc</a></li>
+    <li><a href="#products">Products</a></li>
+    <li><a href="#testimonials">Reviews</a></li>
+    <li><a href="#faq">FAQ</a></li>
+    <li><a href="#buy" class="btn btn-primary" style="padding:0.4rem 1.2rem;font-size:0.9rem;border-radius:4px;">Buy Now</a></li>
+  </ul>
+</nav>
+
+<!-- HERO -->
+<section class="hero">
+  <div class="hero-gear-bg" aria-hidden="true">⚙</div>
+  <div class="badge">⚙️ Now shipping — 1–3 weeks (gears are heavy)</div>
+  <p class="hero-eyebrow">The only gear company that doesn't apologize for it</p>
+  <h1>
+    THICC
+    <span class="thin-line">GEARS.</span>
+  </h1>
+  <p class="hero-sub">
+    While <em>some</em> companies are busy making gears <strong>impossibly thin</strong>,
+    we asked a different question: <strong>what if the gear was absolutely jacked?</strong>
+    Introducing ThiccGears — the heftiest, beefiest, most structurally intimidating
+    robotics gears on the market.
+  </p>
+  <div class="hero-cta">
+    <a href="#products" class="btn btn-primary">Shop the Beef</a>
+    <a href="#why" class="btn btn-secondary">Why Thicc Wins</a>
+  </div>
+</section>
+
+<!-- WHY THICC -->
+<section class="why" id="why">
+  <div class="container">
+    <p class="section-label">The Science of Thickness</p>
+    <h2 class="section-title">Thin is a Fear Response.<br>Thicc is a Choice.</h2>
+    <p class="section-body">
+      Engineers have long chased the myth of "lighter, thinner, better." We respect the hustle.
+      But some of us need gears that look like they lift. Here's why thickness wins.
+    </p>
+    <div class="why-grid">
+      <div class="why-card">
+        <div class="why-icon">💪</div>
+        <h3>Unshakeable Torque</h3>
+        <p>Our gears are so thick they generate torque just by existing in the room. Robots powered by ThiccGears have been known to intimidate judges before the match starts.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">🛡️</div>
+        <h3>Practically Indestructible</h3>
+        <p>Thin gears strip. Thin gears snap. Thin gears ghost you at competition. Our thick gears have survived direct impacts, bad software, and one incident we don't talk about in Idaho.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">😤</div>
+        <h3>Psychological Warfare</h3>
+        <p>When your robot opens up during inspection and the judges see gears that could survive a car crash, morale among your opponents plummets. We've studied this.</p>
+      </div>
+      <div class="why-card">
+        <div class="why-icon">📦</div>
+        <h3>Easy to Find</h3>
+        <p>Ever dropped a thin gear? It disappears into the void. Our gears are large enough to cast a shadow. You'll always know where they are. They have a presence.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- COMPARISON CHART -->
+<section class="comparison" id="comparison">
+  <div class="container">
+    <p class="section-label">Head-to-Head</p>
+    <h2 class="section-title">Us vs. Them</h2>
+    <p class="section-body">The numbers speak for themselves. Especially the thickness number.</p>
+    <div class="chart-wrapper">
+
+      <div class="chart-row">
+        <div class="chart-label">Thickness (mm)</div>
+        <div class="chart-bar-bg">
+          <div class="chart-bar bar-us" style="width:95%">ThiccGears — 31mm 💛</div>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label"></div>
+        <div class="chart-bar-bg">
+          <div class="chart-bar bar-them" style="width:12%">ThinGears — 4mm</div>
+        </div>
+      </div>
+
+      <div class="chart-row" style="margin-top:2rem">
+        <div class="chart-label">Vibe (0–100)</div>
+        <div class="chart-bar-bg">
+          <div class="chart-bar bar-us" style="width:100%">ThiccGears — IMMACULATE 💛</div>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label"></div>
+        <div class="chart-bar-bg">
+          <div class="chart-bar bar-them" style="width:68%">ThinGears — Fine</div>
+        </div>
+      </div>
+
+      <div class="chart-row" style="margin-top:2rem">
+        <div class="chart-label">Weight (lbs)</div>
+        <div class="chart-bar-bg">
+          <div class="chart-bar bar-us" style="width:88%">ThiccGears — 4.7 lbs per gear 💛</div>
+        </div>
+      </div>
+      <div class="chart-row">
+        <div class="chart-label"></div>
+        <div class="chart-bar-bg">
+          <div class="chart-bar bar-them" style="width:5%">ThinGears</div>
+        </div>
+      </div>
+
+    </div>
+    <p style="margin-top:1.5rem;color:#555;font-size:0.8rem;font-style:italic;">* Chart methodology: we made this up, but the spirit is accurate.</p>
+  </div>
+</section>
+
+<!-- PRODUCTS -->
+<section class="products" id="products">
+  <div class="container">
+    <p class="section-label">The Lineup</p>
+    <h2 class="section-title">Choose Your Thickness</h2>
+    <p class="section-body">Three tiers of uncompromising girth. All aluminum. All attitude. No returns (they're too heavy to ship back).</p>
+    <div class="products-grid">
+
+      <!-- Chonk -->
+      <div class="product-card">
+        <div class="product-visual">⚙️</div>
+        <div class="product-body">
+          <h3>ThiccGear Chonk</h3>
+          <span class="product-thickness">12mm thick · Entry Level Beef</span>
+          <p>The gateway drug to thick gears. At 12mm, the Chonk is 200% thicker than leading thin gear competitors and will make your robot feel like it has something to say.</p>
+          <div class="product-specs">
+            <div class="spec-row"><span>Thickness</span><span>12mm</span></div>
+            <div class="spec-row"><span>Tooth Count</span><span>18T – 60T</span></div>
+            <div class="spec-row"><span>Material</span><span>6061 Aluminum (Beefy Grade)</span></div>
+            <div class="spec-row"><span>Weight</span><span>1.2 lbs</span></div>
+            <div class="spec-row"><span>Vibes</span><span>Solid</span></div>
+          </div>
+          <div class="product-price">$54.99 <sub>/ gear</sub></div>
+          <button class="product-cta" id="buy">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Beefcake (featured) -->
+      <div class="product-card featured">
+        <div class="featured-tag">🏆 Most Popular</div>
+        <div class="product-visual">⚙️⚙️</div>
+        <div class="product-body">
+          <h3>ThiccGear Beefcake</h3>
+          <span class="product-thickness">22mm thick · The Standard</span>
+          <p>The Beefcake is our gold standard. This gear has appeared in three regional finals, one championship, and one very confused physics textbook. It does not skip leg day.</p>
+          <div class="product-specs">
+            <div class="spec-row"><span>Thickness</span><span>22mm</span></div>
+            <div class="spec-row"><span>Tooth Count</span><span>18T – 60T</span></div>
+            <div class="spec-row"><span>Material</span><span>6061 Aluminum (Swole Edition)</span></div>
+            <div class="spec-row"><span>Weight</span><span>2.8 lbs</span></div>
+            <div class="spec-row"><span>Vibes</span><span>Immaculate</span></div>
+          </div>
+          <div class="product-price">$94.99 <sub>/ gear</sub></div>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+
+      <!-- Absolute Unit -->
+      <div class="product-card">
+        <div class="product-visual">⚙️⚙️⚙️</div>
+        <div class="product-body">
+          <h3>ThiccGear Absolute Unit</h3>
+          <span class="product-thickness">31mm thick · Unhinged</span>
+          <p>We want to be clear: this gear is not for everyone. It is for the student who looked at weight limits and said "I accept this challenge." Ships in a reinforced crate.</p>
+          <div class="product-specs">
+            <div class="spec-row"><span>Thickness</span><span>31mm</span></div>
+            <div class="spec-row"><span>Tooth Count</span><span>18T – 60T</span></div>
+            <div class="spec-row"><span>Material</span><span>6061 Aluminum (Unhinged Grade)</span></div>
+            <div class="spec-row"><span>Weight</span><span>4.7 lbs</span></div>
+            <div class="spec-row"><span>Vibes</span><span>Feral</span></div>
+          </div>
+          <div class="product-price">$159.99 <sub>/ gear</sub></div>
+          <button class="product-cta">Add to Cart</button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+<!-- STATS BAND -->
+<div class="stats">
+  <div class="stats-grid">
+    <div>
+      <div class="stat-number">31mm</div>
+      <div class="stat-label">Maximum Thickness</div>
+    </div>
+    <div>
+      <div class="stat-number">4.7lbs</div>
+      <div class="stat-label">Heaviest Single Gear</div>
+    </div>
+    <div>
+      <div class="stat-number">2</div>
+      <div class="stat-label">C's in Our Name</div>
+    </div>
+    <div>
+      <div class="stat-number">0</div>
+      <div class="stat-label">Apologies Given</div>
+    </div>
+    <div>
+      <div class="stat-number">∞</div>
+      <div class="stat-label">Thickness Ambition</div>
+    </div>
+  </div>
+</div>
+
+<!-- TESTIMONIALS -->
+<section class="testimonials" id="testimonials">
+  <div class="container">
+    <p class="section-label">From the Field</p>
+    <h2 class="section-title">Teams Who Chose Thickness</h2>
+    <div class="testi-grid">
+      <div class="testi-card">
+        <p class="testi-quote">"I'll be honest — I was a thin gear guy for years. Then I held a ThiccGear Beefcake and something shifted in me. Our robot is slower now. We've never been happier."</p>
+        <div class="testi-author">Michael Corsetto</div>
+        <div class="testi-team">Team 1678 — Citrus Circuits (ThiccGears Convert)</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"We were skeptical. We are 254. We do not endorse things lightly. But the Absolute Unit gear walked into our shop and we simply could not send it back. It lives here now."</p>
+        <div class="testi-author">Travis Cubbington</div>
+        <div class="testi-team">Team 254 — Cheesy Poofs</div>
+      </div>
+      <div class="testi-card">
+        <p class="testi-quote">"Please don't tell JJ."</p>
+        <div class="testi-author">Coach Kenny</div>
+        <div class="testi-team">Team 4414 — HighTide</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="faq" id="faq">
+  <div class="container">
+    <p class="section-label">Common Questions</p>
+    <h2 class="section-title">We've Heard It All</h2>
+    <div class="faq-list">
+      <div class="faq-item">
+        <div class="faq-q">Why are there two C's in ThiccGears?</div>
+        <div class="faq-a">One C was not enough. Three C's looked like a typo. Two C's is the internet's way of saying you mean it. We mean it.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Are these gears FRC legal?</div>
+        <div class="faq-a">We've submitted the paperwork. FIRST is reviewing it. The question on the table is whether "gear" includes "structural element" at 31mm. Legal says probably. Probably.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Will thick gears make my robot slower?</div>
+        <div class="faq-a">Almost certainly. But speed is a metric. Presence is a vibe. ThiccGears sells vibes. Measure what matters to you.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">How do you feel about ThinGears?</div>
+        <div class="faq-a">We respect ThinGears deeply. Friendly rivalry. We once mailed them one of our Absolute Unit gears as a gift. They have not responded. We understand.</div>
+      </div>
+      <div class="faq-item">
+        <div class="faq-q">Is "Beefy Grade" and "Unhinged Grade" a real aluminum classification?</div>
+        <div class="faq-a">It is a ThiccGears internal classification system. The underlying alloy is standard 6061. The grade names reflect our values, not the alloy. This is called brand integrity.</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA BANNER -->
+<section class="cta-banner">
+  <h2>Stop Apologizing<br>for Your Gears.</h2>
+  <p>Join hundreds of robotics teams who chose substance over subtlety. ThiccGears: because the robot that looks the most confident usually wins.</p>
+  <a href="#products" class="btn btn-primary">Shop ThiccGears</a>
+</section>
+
+<!-- FOOTER -->
+<footer>
+  <div class="footer-logo">THICC<span style="color:var(--orange)">GEARS</span></div>
+  <p class="footer-tagline">Thicc. Gears. — Est. 2025 — A Parody</p>
+  <nav>
+    <ul>
+      <li><a href="#products">Shop</a></li>
+      <li><a href="#why">Science</a></li>
+      <li><a href="#testimonials">Reviews</a></li>
+      <li><a href="#faq">FAQ</a></li>
+      <li><a href="#">Contact</a></li>
+      <li><a href="#">Sponsorships</a></li>
+    </ul>
+  </nav>
+  <p class="footer-copy">© 2025 ThiccGears LLC. All rights reserved. Not affiliated with ThinGears or any real gear company. <br>Gear specifications may be exaggerated for comedic effect. The Absolute Unit is not responsible for any weight limit violations.</p>
+</footer>
+
+</body>
+</html>
